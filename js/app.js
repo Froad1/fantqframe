@@ -1,6 +1,6 @@
 const gallery = document.querySelector(".images");
 
-fetch("img/")
+fetch("./img/")
   .then(response => response.text())
   .then(text => {
     const files = text.split("\n");
