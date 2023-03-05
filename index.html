@@ -16,12 +16,23 @@
         style="display: none; margin-left: 25px">Revoke access</button>
 
     <div id="auth-status" style="display: inline; padding-left: 25px"></div><hr>
-    
+
     <div id="g_id_onload"
-         data-client_id="140996188319-gf4fe797cnc2513iehvf4cqf729mqm0c.apps.googleusercontent.com"
-         data-callback="handleCredentialResponse">
+        data-client_id="140996188319-gf4fe797cnc2513iehvf4cqf729mqm0c.apps.googleusercontent.com"
+        data-context="signin"
+        data-ux_mode="popup"
+        data-login_uri="https://froad1.github.io/fantqframe/"
+        data-auto_prompt="false">
     </div>
-    <div class="g_id_signin" data-type="standard"></div>
+
+    <div class="g_id_signin"
+        data-type="standard"
+        data-shape="rectangular"
+        data-theme="outline"
+        data-text="signin_with"
+        data-size="large"
+        data-logo_alignment="left">
+    </div>
 
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
