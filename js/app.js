@@ -27,6 +27,11 @@ $(document).ready(function() {
 			$('.big-image_container').on('click', function(){
 				closeBig();
 			});
+			$(document).keydown(function(event) {
+				if (event.keyCode === 27) { // 27 - код клавіші "Esc"
+				  closeBig();
+				}
+			  });
 			$('.big-close').on('click', function(){
 				closeBig();
 			});

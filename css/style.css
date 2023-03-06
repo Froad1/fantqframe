@@ -79,8 +79,8 @@
         }
         .big-close{
             position: absolute;
-            top: 0;
-            right: 0;
+            top: 1vh;
+            right: 1%;
             font-variation-settings:
             'FILL' 255,
             'wght' 400,
