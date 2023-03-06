@@ -1,4 +1,50 @@
-img{
-    max-width: 300px;
-    max-height: 200px;
+.image_container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
+    .images{
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+        height: 100%;
+        max-height: 450px;
+        margin-bottom: 20px;
+    }
+        .image{
+            height: 60vh;
+        }
+
+        .image-info{
+            display: none;
+            position: relative;
+            width: calc(100% - 48px);
+            height: 40px;
+            background: rgb(215, 215, 215);
+            transition: ease-in 2s;
+            border-radius: 0px 0px 16px 16px;
+        }
+        .image:hover ~ .image-info, .image-info:hover{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 20
+        }
+        .material-symbols-outlined:hover {
+          font-variation-settings:
+          'FILL' 255,
+          'wght' 400,
+          'GRAD' 800,
+          'opsz' 20
+        }
+        .max-size{
+            color: black;
+            text-decoration:none;
+        }
