@@ -14,6 +14,29 @@ $(document).ready(function() {
 			}
 		}
 		$('.image').ready(function(){
+			if(window.innerWidth>600){
+			$('.image').on('click', function(){
+				$('.big-image_container').html('');
+				var imageSrc = $(this).attr('src');
+				$('.big-image_container').show(500, function(){
+					$('.big-image_container').css("display", "flex");
+				})
+				$('.big-image_container').append('<div class="big-background"> <img src="'+ imageSrc +'" class="big-image"> <span class="material-symbols-outlined big-close">close</span></div>')
+			})
+
+			$('.big-image_container').on('click', function(){
+				closeBig();
+			});
+			$('.big-close').on('click', function(){
+				closeBig();
+			});
+
+
+			function closeBig(){
+				$('.big-image_container').hide(500, function(){
+					$('.big-image_container').html('');
+				})
+			}}
 			$('.download').on('click', function() {
 				var imageSrc = $(this).data('image-src');
 				var filename = $(this).data('image-name');
