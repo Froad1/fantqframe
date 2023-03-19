@@ -11,11 +11,24 @@
 body{
     font-family: "e-Ukraine", sans-serif;
 }
+.change-wrap{
+    position: relative;
+    width: 100%;
+}
+    .small-wrap{
+        position: absolute;
+        right: 0;
 
+    }
+    .big-wrap{
+        position: absolute;
+        right: 0;
+    }
 .image_container{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    transition: all 0.4s ease-in-out 0s;
 }
     .images{
         display: flex;
@@ -24,10 +37,14 @@ body{
         max-height: 65vh;
         margin-bottom: 20px;
         flex-direction: column;
+        box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.5);
+        border-radius: 0px 0px 16px 16px;
+        transition: all 0.4s ease-in-out 0s;
     }
         .image{
             max-width: 100%;
             max-height: 60vh;
+            z-index: 1;
         }
 
         .image-info{
@@ -36,14 +53,26 @@ body{
             width: 100%;
             height: 40px;
             background: rgb(215, 215, 215);
-            transition: ease-in 2s;
             border-radius: 0px 0px 16px 16px;
+
+            justify-content: space-around;
+            align-items: center;
         }
         .image:hover ~ .image-info, .image-info:hover{
+            animation: move 0.4s ease-in-out 0s;
             display: flex;
             justify-content: space-around;
             align-items: center;
         }
+
+        @keyframes move {
+            0% {
+              bottom: 40px;
+            }
+            100% {
+              bottom: 0;
+            }
+          } 
 
         .material-symbols-outlined {
           font-variation-settings:
@@ -53,11 +82,7 @@ body{
           'opsz' 20
         }
         .material-symbols-outlined:hover {
-          font-variation-settings:
-          'FILL' 255,
-          'wght' 400,
-          'GRAD' 800,
-          'opsz' 20
+            color: rgb(60, 60, 60);
         }
         .max-size{
             color: black;
@@ -80,6 +105,7 @@ body{
 }
 
     .big-background{
+        z-index: 102;
         justify-content: center;
         align-items: center;
         display: flex;
@@ -117,6 +143,7 @@ body{
     justify-content: center;
 }
     .detail-info{
+        padding: 7px;
         background: white;
         border-radius: 26px;
         display: flex;
@@ -129,3 +156,11 @@ body{
             top: 15px;
             max-width: 40%;
         }
+    .camera-info{
+        width: 100%;
+    }
+
+.map {
+    border-radius: 16px;
+    width: 100%;
+  }
