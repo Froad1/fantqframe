@@ -22,13 +22,14 @@ $(document).ready(function() {
 				$('.big-image_container').show(500, function(){
 					$('.big-image_container').css("display", "flex");
 				})
-				$('.big-image_container').append('<div class="big-background"> <img src="'+ imageSrc +'" class="big-image"> <span class="material-symbols-outlined big-close">close</span></div>')
+				$('.big-image_container').append('<div class="big-background"> <span class="big-close material-symbols-outlined">close</span> <img src="'+ imageSrc +'" class="big-image"></div>')
 			})
 
 			$('.big-image_container').on('click', function(e){
 				if(e.target === document.querySelector(".big-image_container")){
 					closeBig();
 				}
+				else if(e.target === document.querySelector(".big-close")) closeBig();
 			});
 			$(document).keydown(function(event) {
 				if (event.keyCode === 27) { // 27 - код клавіші "Esc"
@@ -36,6 +37,7 @@ $(document).ready(function() {
 				}
 			  });
 			$('.big-close').on('click', function(){
+				console.log(123);
 				closeBig();
 			});
 
@@ -103,9 +105,6 @@ $(document).ready(function() {
 				  closeDet();
 				}
 			  });
-			$('.big-close').on('click', function(){
-				closeDet();
-			});
 
 
 			function closeDet(){
