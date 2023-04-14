@@ -7,22 +7,41 @@
     font-family: "e-UkraineHead";
     src: url(../fonts/e-UkraineHead-LOGO.otf);
 }
-
+:root{
+    --light_mode: rgb(231, 231, 231);
+    --dark_mode: #1f1f1f;
+    --backround_mode_color: var(--dark_mode);
+    --backround_mode: var(--light_mode);
+}
 body{
+    background-color: var(--light_mode);
     font-family: "e-Ukraine", sans-serif;
 }
-.change-wrap{
-    position: relative;
-    width: 100%;
-}
-    .small-wrap{
-        position: absolute;
-        right: 0;
 
-    }
-    .big-wrap{
-        position: absolute;
-        right: 0;
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 20;
+    cursor: pointer;
+  }
+  .material-symbols-outlined:hover {
+      color: rgba(79, 79, 79, 0.76);
+  }
+
+header{
+    color: var(--dark_mode);
+    display: flex;
+    height: 7vh;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px 0 15px;
+}
+    .header-icons{
+        display: flex;
+        flex-direction: row-reverse;
+        gap: 5px;
     }
 
 .image_container{
@@ -74,16 +93,6 @@ body{
             }
           } 
 
-        .material-symbols-outlined {
-          font-variation-settings:
-          'FILL' 0,
-          'wght' 400,
-          'GRAD' 0,
-          'opsz' 20
-        }
-        .material-symbols-outlined:hover {
-            color: rgb(60, 60, 60);
-        }
         .max-size{
             color: black;
             text-decoration:none;
@@ -145,7 +154,8 @@ body{
 }
     .detail-info{
         padding: 7px;
-        background: white;
+        background-color: var(--backround_mode);
+        color: var(--backround_mode_color);
         border-radius: 26px;
         display: flex;
         position: relative;
@@ -163,5 +173,13 @@ body{
 
 .map {
     border-radius: 16px;
-    width: 100%;
+    max-width: 100%;
+    max-height: 100vh;
   }
+
+
+
+body,:before,:after ,header,:before,:after,.image_container,:before,:after {
+    -webkit-transition: .25s ease-in-out;
+   }
+

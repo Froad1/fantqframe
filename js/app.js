@@ -1,18 +1,39 @@
 
 $(document).ready(function() {
   var apiKey = 'AIzaSyBuLq-_gvpC4zfYS8tSZytyjvHwqHYfSdI';
-  var folderId = '1NGDYGtIxD5z2eRpHhBgIAUqZTbp4JYOJ';
+  var folderId = '1zeKtRexBUZJYWH85Ellvj8cIjVh90P8J';
+var folderId = '1NGDYGtIxD5z2eRpHhBgIAUqZTbp4JYOJ';
   var url = 'https://www.googleapis.com/drive/v3/files?q=' +
             '"' + folderId + '"+in+parents&fields=*' +
             '&key=' + apiKey;
   $.getJSON(url, function(data) {
       var items = data.files;
 	  console.log(items);
+	  var loctArr = [];
       for (var i = 0; i < items.length; i++) {
           var item = items[i];
+		var descript;
           if (item.mimeType.indexOf('image') !== -1) {
-			$('.image_container').append('<div class="images"><img src="' + item.thumbnailLink.split('=')[0] + '" class="image"><div class="image-info"><span class="material-symbols-outlined download" data-image-src="' + item.thumbnailLink.split('=')[0] + '" data-image-name="' + item.name + '" >download</span><a class="material-symbols-outlined max-size" href="' + item.thumbnailLink.split('=')[0] + '" target="_blank">open_in_full</a><span class="material-symbols-outlined more_horiz" data-img-metadans="' + i + '">more_horiz</span></div></div>')
+			descript = '';
+			item.description ? descript = item.description.split(' '): "";
+			if(descript[2] != undefined){
+				if(loctArr.includes(descript[2])){}
+				else loctArr.push(descript[2])
+			}else if(descript.length == 1){
+				if(loctArr.includes(descript[0])){}
+				else loctArr.push(descript[0])
 			}
+			var loc= '';
+			if(descript.length == 1){
+				loc = descript[0]
+			}else loc = descript[2]
+			//if(descript[2] == '' || descript[2] == undefined){} else loctArr.push(descript[2])
+			$('.image_container').append('<div class="images '+ loc +'"><img src="' + item.thumbnailLink.split('=')[0] + '" class="image"><div class="image-info"><span class="material-symbols-outlined download" data-image-src="' + item.thumbnailLink.split('=')[0] + '" data-image-name="' + item.name + '" >download</span><a class="material-symbols-outlined max-size" href="' + item.thumbnailLink.split('=')[0] + '" target="_blank">open_in_full</a><span class="material-symbols-outlined more_horiz" data-img-metadans="' + i + '">more_horiz</span></div></div>')
+			}
+		}
+		console.log(loctArr);
+		for(var o = 0; o<loctArr.length;o++ ){
+			$("#location-filter").append('<option value="'+ loctArr[o] +'">'+ loctArr[o] +'</option>');
 		}
 		$('.image').ready(function(){
 			if(window.innerWidth>600){
@@ -80,6 +101,11 @@ $(document).ready(function() {
 
 				var metadans = $(this).data('img-metadans');
 				console.log(items[metadans].imageMediaMetadata);
+				var descript;
+				items[metadans].description ? descript = items[metadans].description.split(' '): "";
+				console.log(descript)
+				if(items[metadans].imageMediaMetadata.location) console.log(true)
+				else console.log(false);
 				var camera 
 				if(items[metadans].imageMediaMetadata.cameraModel == "Canon EOS 1300D"){
 					camera = '<img src="./assets/A034.png" class="detail-img"><div class="camera-info"><p class="camera-model">Камера: '+ items[metadans].imageMediaMetadata.cameraModel +'</p><p>Обʼєктив: '+ items[metadans].imageMediaMetadata.lens +'</p></div>'
@@ -92,7 +118,7 @@ $(document).ready(function() {
 				} 
 
 				$('.detail-image-info').append('<div class="detail-info">' +camera+'</div>')
-				items[metadans].imageMediaMetadata.location.latitude ? $('.camera-info').append('<p>Місце зйомки:</p><img src="https://maps.googleapis.com/maps/api/staticmap?center='+ items[metadans].imageMediaMetadata.location.latitude +',' + items[metadans].imageMediaMetadata.location.longitude +'&zoom=12&size=300x300&markers=color:red%7C48.14255555555555,17.10073888888889&maptype=roadmap&key=AIzaSyCSb_Cp8WHrUORs07iAZy4S4DruUsFHPw0&map_id=4be591a3da52b40f" alt="" srcset="" class="map">') :"";
+				items[metadans].imageMediaMetadata.location ? $('.camera-info').append('<p>Місце зйомки:</p><img src="https://maps.googleapis.com/maps/api/staticmap?center='+ items[metadans].imageMediaMetadata.location.latitude +',' + items[metadans].imageMediaMetadata.location.longitude +'&zoom=12&size=300x300&markers=color:red%7C'+ items[metadans].imageMediaMetadata.location.latitude +',' + items[metadans].imageMediaMetadata.location.longitude +'&maptype=roadmap&key=AIzaSyCSb_Cp8WHrUORs07iAZy4S4DruUsFHPw0&map_id=4be591a3da52b40f" alt="" srcset="" class="map">') : items[metadans].description ? $('.camera-info').append('<p>Місце зйомки:</p><img src="https://maps.googleapis.com/maps/api/staticmap?center='+ descript[0] +',' + descript[1] +'&zoom=12&size=300x300&markers=color:red%7C'+ descript[0] +',' + descript[1] +'&maptype=roadmap&key=AIzaSyCSb_Cp8WHrUORs07iAZy4S4DruUsFHPw0&map_id=4be591a3da52b40f" alt="" srcset="" class="map">') : "";
 					//AIzaSyCSb_Cp8WHrUORs07iAZy4S4DruUsFHPw0
 				
 			});
@@ -112,16 +138,63 @@ $(document).ready(function() {
 					$('.detail-image-info').html('');
 				})
 			}
+
+
+			document.querySelector("#location-filter").addEventListener('change', (event) => {
+				const selectedValue = event.target.value;
+				if(selectedValue == "all"){
+					console.log('ALL')
+					for(var i=0;i<loctArr.length;i++){
+						$('.'+loctArr[i]+'').show()
+					}
+					$('.undefined').show()
+				}else if(loctArr.includes(selectedValue)){
+					console.log(selectedValue)
+					for(var i=0;i<loctArr.length;i++){
+						$('.'+loctArr[i]+'').hide()
+					}
+					$('.undefined').hide()
+					$('.'+selectedValue+'').show()
+				}
+			  });
 		});
 	});
+	$('.big-wrap').hide();
 	$('.small-wrap').on('click',function(){
-		$('.image').css('max-height', '35vh')
+		$('.image').css('max-height', '35vh',500);
+		$('.small-wrap').hide(500);
+		$('.big-wrap').show(500);
 	})
 	$('.big-wrap').on('click',function(){
-		$('.image').css('max-height', '60vh')
+		$('.image').css('max-height', '60vh',500)
+		$('.big-wrap').hide(500);
+		$('.small-wrap').show(500);
+	})
+	$('.light_mode').hide();
+	$('.light_mode').on('click', function(){
+			$('body').css('background-color', 'var(--light_mode)').fadeIn(500);
+			$('header').css('color', 'var(--dark_mode)').fadeIn(500);
+
+		// $('body').css('background-color', 'var(--light_mode)',500);
+		// $('header').css('color','var(--dark_mode)',500);
+		$('.detail-image-info').css('--backround_mode', 'rgb(231, 231, 231)');
+		$('.detail-image-info').css('--backround_mode_color','#1f1f1f');
+		$('.dark_mode').show(500);
+		$('.light_mode').hide(500);
+	})
+	$('.dark_mode').on('click', function(){
+
+			$('body').css('background-color', 'var(--dark_mode)').fadeIn(500);
+			$('header').css('color', 'var(--light_mode)').fadeIn(500);
+
+		// $('body').css('background-color', 'var(--dark_mode)',500);
+		// $('header').css('color','var(--light_mode)',500);
+		$('.detail-image-info').css('--backround_mode','#1f1f1f' );
+		$('.detail-image-info').css('--backround_mode_color','rgb(231, 231, 231)');
+		$('.light_mode').show(500);
+		$('.dark_mode').hide(500);
 	})
 });
-
 
 
 

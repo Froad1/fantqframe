@@ -4,16 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />    <title>fantq image</title>
 </head>
 <body>
-    <main>
-        <div class="change-wrap">
+    <header>
+        <div>fantqimg</div>
+        <div class="header-icons">
             <span class="material-symbols-outlined small-wrap" style="font-size: 2em;">drag_indicator</span>
             <span class="material-symbols-outlined big-wrap" style="font-size: 2em">apps</span>
+            <span class="material-symbols-outlined dark_mode" style="font-size: 2em">dark_mode</span>
+            <span class="material-symbols-outlined light_mode" style="font-size: 2em">light_mode</span>
         </div>
+    </header>
+    <main>
+        <select id="location-filter">
+            <option value="all">All</option>
+
+          </select>          
         <div class="image_container"></div>
     </main>
     <div class="big-image_container"></div>
