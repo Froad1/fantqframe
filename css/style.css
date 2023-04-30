@@ -16,19 +16,8 @@
 body{
     background-color: var(--light_mode);
     font-family: "e-Ukraine", sans-serif;
+    padding: 0 15px 0 15px;
 }
-
-.material-symbols-outlined {
-    font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 20;
-    cursor: pointer;
-  }
-  .material-symbols-outlined:hover {
-      color: rgba(79, 79, 79, 0.76);
-  }
 
 header{
     color: var(--dark_mode);
@@ -36,13 +25,14 @@ header{
     height: 7vh;
     align-items: center;
     justify-content: space-between;
-    padding: 0 15px 0 15px;
 }
+
     .header-icons{
         display: flex;
         flex-direction: row-reverse;
         gap: 5px;
     }
+  
 
 .image_container{
     display: flex;
@@ -182,4 +172,34 @@ header{
 body,:before,:after ,header,:before,:after,.image_container,:before,:after {
     -webkit-transition: .25s ease-in-out;
    }
+.control{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0 0 10px 0;
+}
+   select {
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    padding: 7px;
+    background-color: #f5f5f5;
+    color: #333;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
 
+select:focus {
+    outline: none;
+    box-shadow: 0 0 5px #c9c9c9;
+}
+
+select option:first-child {
+    color: #999;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}

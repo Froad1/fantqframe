@@ -11,23 +11,25 @@
     <header>
         <div>fantqimg</div>
         <div class="header-icons">
-            <span class="material-symbols-outlined small-wrap" style="font-size: 2em;">drag_indicator</span>
-            <span class="material-symbols-outlined big-wrap" style="font-size: 2em">apps</span>
             <span class="material-symbols-outlined dark_mode" style="font-size: 2em">dark_mode</span>
             <span class="material-symbols-outlined light_mode" style="font-size: 2em">light_mode</span>
         </div>
     </header>
     <main>
-        <select id="location-filter">
-            <option value="all">All</option>
-
-          </select>          
+        <div class="control">
+            <select id="location-filter">
+                <option value="all">All</option>
+              </select>
+              <span class="material-symbols-outlined small-wrap" style="font-size: 2em;">drag_indicator</span>
+              <span class="material-symbols-outlined big-wrap" style="font-size: 2em">apps</span>
+        </div>        
         <div class="image_container"></div>
     </main>
     <div class="big-image_container"></div>
     <div class="detail-image-info"></div>
 
     <script src="./js/jquery-3.6.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
     <script src="./js/app.js"></script>
 </body>
 </html>
